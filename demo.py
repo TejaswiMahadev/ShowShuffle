@@ -10,51 +10,6 @@ from movie import *
 import requests
 from concurrent.futures import ThreadPoolExecutor
 
-
-def search_movies(query, data_items):
-    """Search for movies in the dataset based on query"""
-    # Convert query and movie names to lowercase for case-insensitive search
-    query = query.lower()
-    # Filter movies where movie name contains the search query
-    matches = data_items[data_items['movie_name'].str.lower().str.contains(query, na=False)]
-    return matches
-
-def fetch_movie_details(movie_name):
-    """Fetch movie details from TMDB API"""
-    api_key = "8265bd1679663a7ea12ac168da84d2e8&language=en-US"
-    base_url = "https://api.themoviedb.org/3"
-    
-    search_url = f"{base_url}/search/movie"
-    params = {
-        "api_key": api_key,
-        "query": movie_name
-    }
-    
-    try:
-        response = requests.get(search_url, params=params)
-        data = response.json()
-        
-        if data.get("results") and len(data["results"]) > 0:
-            movie = data["results"][0]
-            return {
-                "poster_path": f"https://image.tmdb.org/t/p/w500{movie['poster_path']}" if movie['poster_path'] else "https://via.placeholder.com/500x750?text=No+Poster+Available",
-                "overview": movie['overview'],
-                "release_date": movie['release_date'],
-                "rating": movie['vote_average'],
-                "id": movie['id']
-            }
-    except:
-        pass
-    
-    return {
-        "poster_path": "https://via.placeholder.com/500x750?text=No+Poster+Available",
-        "overview": "No overview available",
-        "release_date": "Unknown",
-        "rating": "N/A",
-        "id": None
-    }
-
-
 def fetch_movie_poster(movie_name):
     api_key = "8265bd1679663a7ea12ac168da84d2e8&language=en-US"
     base_url = "https://api.themoviedb.org/3"
@@ -75,24 +30,18 @@ def fetch_movie_poster(movie_name):
                 return f"https://image.tmdb.org/t/p/w500{poster_path}"
     except:
         pass
-    
-    # Return a placeholder if no poster is found
+
     return "https://via.placeholder.com/500x750?text=No+Poster+Available"
 
 
 def display_movie_cards(movies, title):
     """Display movie recommendations as cards"""
     st.subheader(title)
-    
-    # Create rows of 4 movies each
     cols = st.columns(4)
     for idx, movie in enumerate(movies):
         col_idx = idx % 4
-        with cols[col_idx]:
-            # Fetch poster URL for the movie
+        with cols[col_idx]: 
             poster_url = fetch_movie_poster(movie)
-            
-            # Create card using HTML/CSS
             st.markdown(
                 f"""
                 <div style="
