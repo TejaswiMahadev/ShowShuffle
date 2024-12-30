@@ -131,339 +131,171 @@ def display_home_page():
     st.write("---")
 
 # Function to display category page content
-def action_page():
-    st.title("WHAT TO WATCH")
-    st.header("Top picks")
-
 def display_category_page():
     st.title("Categories")
     
-    # Create expandable sections for each genre
+    def create_movie_card(title, description, image_url):
+        st.markdown(
+            f"""
+            <div style="
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                padding: 10px;
+                margin: 10px 0;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                height: 450px;
+                background-color: white;
+            ">
+                <img src="{image_url}" 
+                    style="
+                        width: 100%;
+                        height: 350px;
+                        object-fit: cover;
+                        border-radius: 8px;
+                    "
+                >
+                <h3 style="
+                    margin: 10px 0;
+                    text-align: center;
+                    font-size: 1.2rem;
+                ">{title}</h3>
+                <p style="
+                    text-align: center;
+                    font-size: 0.9rem;
+                    color: #666;
+                ">{description}</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    # ACTION
     with st.expander("ACTION", expanded=False):
         col1, col2 = st.columns(2)
-        
         with col1:
-            card(
-                title="Top Gun: Maverick",
-                text="After thirty years, Maverick is still pushing the envelope as a top naval aviator.",
-                image="https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg",
-                styles={
-                    "card": {
-                        "width": "100%",
-                        "height": "400px",
-                        "border-radius": "10px",
-                        "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                    },
-                    "text": {
-                        "font-family": "serif",
-                        "text-align": "center",
-                    }
-                }
+            create_movie_card(
+                "Top Gun: Maverick",
+                "After thirty years, Maverick is still pushing the envelope as a top naval aviator.",
+                "https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg"
             )
-        
         with col2:
-            card(
-                title="John Wick",
-                text="An ex-hitman comes out of retirement to track down the gangsters that killed his dog.",
-                image="https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_.jpg",
-                styles={
-                    "card": {
-                        "width": "100%",
-                        "height": "400px",
-                        "border-radius": "10px",
-                        "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                    },
-                    "text": {
-                        "font-family": "serif",
-                        "text-align": "center",
-                    }
-                }
+            create_movie_card(
+                "John Wick",
+                "An ex-hitman comes out of retirement to track down the gangsters that killed his dog.",
+                "https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_.jpg"
             )
 
+    # SCIENCE FICTION
     with st.expander("SCIENCE FICTION", expanded=False):
         col1, col2 = st.columns(2)
-        
         with col1:
-            card(
-                title="Inception",
-                text="A thief who steals corporate secrets through dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
-                image="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg",
-                styles={
-                    "card": {
-                        "width": "100%",
-                        "height": "400px",
-                        "border-radius": "10px",
-                        "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                    },
-                    "text": {
-                        "font-family": "serif",
-                        "text-align": "center",
-                    }
-                }
+            create_movie_card(
+                "Inception",
+                "A thief who steals corporate secrets through dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+                "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg"
             )
-        
         with col2:
-            card(
-                title="Blade Runner 2049",
-                text="A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard.",
-                image="https://m.media-amazon.com/images/M/MV5BNzA1Njg4NzYxOV5BMl5BanBnXkFtZTgwODk5NjU3MzI@._V1_.jpg",
-                styles={
-                    "card": {
-                        "width": "100%",
-                        "height": "400px",
-                        "border-radius": "10px",
-                        "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                    },
-                    "text": {
-                        "font-family": "serif",
-                        "text-align": "center",
-                    }
-                }
-            )
-    with st.expander("HORROR", expanded=False):
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            card(
-                title="The Conjuring",
-                text="------------------------------------------",
-                image="https://image.tmdb.org/t/p/original/ue0dKuJUhIK4aLr4YcZcNa23saL.jpg",
-                styles={
-                    "card": {
-                        "width": "100%",
-                        "height": "400px",
-                        "border-radius": "10px",
-                        "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                    },
-                    "text": {
-                        "font-family": "serif",
-                        "text-align": "center",
-                    }
-                }
-            )
-        
-        with col2:
-            card(
-                title="The Shining",
-                text="--------------------------------------------",
-                image="https://i.pinimg.com/originals/9b/e0/b9/9be0b9b18147860cdf09d543009cb1d7.jpg",
-                styles={
-                    "card": {
-                        "width": "100%",
-                        "height": "400px",
-                        "border-radius": "10px",
-                        "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                    },
-                    "text": {
-                        "font-family": "serif",
-                        "text-align": "center",
-                    }
-                }
-            )
-    with st.expander("ANIMATION", expanded=False):
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            card(
-                title="Spiderman - Across the Spider-Verse",
-                text="------------------------------------------",
-                image="https://tse4.mm.bing.net/th?id=OIP.V0ustTI4Xr26oBuCCEV7GAHaK8&pid=Api&P=0&h=180",
-                styles={
-                    "card": {
-                        "width": "100%",
-                        "height": "400px",
-                        "border-radius": "10px",
-                        "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                    },
-                    "text": {
-                        "font-family": "serif",
-                        "text-align": "center",
-                    }
-                }
-            )
-        
-        with col2:
-            card(
-                title="Your Name",
-                text="--------------------------------------------",
-                image="https://m.media-amazon.com/images/M/MV5BNTQyMDQwYTUtMDdlMC00YTczLTk2NDktZDRjZDEyZjJmNGQzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg",
-                styles={
-                    "card": {
-                        "width": "100%",
-                        "height": "400px",
-                        "border-radius": "10px",
-                        "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                    },
-                    "text": {
-                        "font-family": "serif",
-                        "text-align": "center",
-                    }
-                }
-            )
-    with st.expander("ROMANCE", expanded=False):
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            card(
-                title="The Notebook",
-                text="------------------------------------------",
-                image="https://image.tmdb.org/t/p/original/wbvboxr6xmdSbMEBKzXVWgAwJ1Q.jpg",
-                styles={
-                    "card": {
-                        "width": "100%",
-                        "height": "400px",
-                        "border-radius": "10px",
-                        "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                    },
-                    "text": {
-                        "font-family": "serif",
-                        "text-align": "center",
-                    }
-                }
-            )
-        
-        with col2:
-            card(
-                title="Pride and Prejudice",
-                text="--------------------------------------------",
-                image="https://tse4.mm.bing.net/th?id=OIP.NGVYslLQv9LQr0iBtNpIYwHaJ4&pid=Api&P=0&h=180",
-                styles={
-                    "card": {
-                        "width": "100%",
-                        "height": "400px",
-                        "border-radius": "10px",
-                        "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                    },
-                    "text": {
-                        "font-family": "serif",
-                        "text-align": "center",
-                    }
-                }
-            )
-    
-    with st.expander("THRILLER", expanded=False):
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            card(
-                title="Gone Girl",
-                text="------------------------------------------",
-                image="https://upload.wikimedia.org/wikipedia/en/7/7e/Gone_Girl_%28Flynn_novel%29.jpg",
-                styles={
-                    "card": {
-                        "width": "100%",
-                        "height": "400px",
-                        "border-radius": "10px",
-                        "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                    },
-                    "text": {
-                        "font-family": "serif",
-                        "text-align": "center",
-                    }
-                }
-            )
-        
-        with col2:
-            card(
-                title="Se7en",
-                text="--------------------------------------------",
-                image="https://tse1.mm.bing.net/th?id=OIP.8oB6jMVpgxBpyXwv6iz-4wHaKf&pid=Api&P=0&h=180",
-                styles={
-                    "card": {
-                        "width": "100%",
-                        "height": "400px",
-                        "border-radius": "10px",
-                        "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                    },
-                    "text": {
-                        "font-family": "serif",
-                        "text-align": "center",
-                    }
-                }
-            )
-    
-    with st.expander("COMEDY", expanded=False):
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            card(
-                title="The Grand Budapest Hotel",
-                text="------------------------------------------",
-                image="https://tse4.mm.bing.net/th?id=OIP.eqw9zTSb2p2SKwaElnbQNQHaLH&pid=Api&P=0&h=180",
-                styles={
-                    "card": {
-                        "width": "100%",
-                        "height": "400px",
-                        "border-radius": "10px",
-                        "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                    },
-                    "text": {
-                        "font-family": "serif",
-                        "text-align": "center",
-                    }
-                }
-            )
-        
-        with col2:
-            card(
-                title="Superbad",
-                text="--------------------------------------------",
-                image="https://tse4.mm.bing.net/th?id=OIP.y1WWTnkVfWsrCyXUyoSL-AHaKj&pid=Api&P=0&h=180",
-                styles={
-                    "card": {
-                        "width": "100%",
-                        "height": "400px",
-                        "border-radius": "10px",
-                        "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                    },
-                    "text": {
-                        "font-family": "serif",
-                        "text-align": "center",
-                    }
-                }
-            )
-    
-    with st.expander("DOCUMENTARY", expanded=False):
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            card(
-                title="Free Solo",
-                text="------------------------------------------",
-                image="https://tse4.mm.bing.net/th?id=OIP.pZqKMB7LBkDXugRNvl22HgHaJ4&pid=Api&P=0&h=180",
-                styles={
-                    "card": {
-                        "width": "100%",
-                        "height": "400px",
-                        "border-radius": "10px",
-                        "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                    },
-                    "text": {
-                        "font-family": "serif",
-                        "text-align": "center",
-                    }
-                }
-            )
-        
-        with col2:
-            card(
-                title="March of the Penguins",
-                text="--------------------------------------------",
-                image="https://tse4.mm.bing.net/th?id=OIP.QE94iI6Dn4s_hbHEe5rV9AHaLH&pid=Api&P=0&h=180",
-                styles={
-                    "card": {
-                        "width": "100%",
-                        "height": "400px",
-                        "border-radius": "10px",
-                        "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                    },
-                    "text": {
-                        "font-family": "serif",
-                        "text-align": "center",
-                    }
-                }
+            create_movie_card(
+                "Blade Runner 2049",
+                "A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard.",
+                "https://m.media-amazon.com/images/M/MV5BNzA1Njg4NzYxOV5BMl5BanBnXkFtZTgwODk5NjU3MzI@._V1_.jpg"
             )
 
+    # HORROR
+    with st.expander("HORROR", expanded=False):
+        col1, col2 = st.columns(2)
+        with col1:
+            create_movie_card(
+                "The Conjuring",
+                "Paranormal investigators Ed and Lorraine Warren work to help a family terrorized by a dark presence in their farmhouse.",
+                "https://image.tmdb.org/t/p/original/ue0dKuJUhIK4aLr4YcZcNa23saL.jpg"
+            )
+        with col2:
+            create_movie_card(
+                "The Shining",
+                "A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence.",
+                "https://i.pinimg.com/originals/9b/e0/b9/9be0b9b18147860cdf09d543009cb1d7.jpg"
+            )
+
+    # ANIMATION
+    with st.expander("ANIMATION", expanded=False):
+        col1, col2 = st.columns(2)
+        with col1:
+            create_movie_card(
+                "Spiderman - Across the Spider-Verse",
+                "Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its very existence.",
+                "https://tse4.mm.bing.net/th?id=OIP.V0ustTI4Xr26oBuCCEV7GAHaK8&pid=Api&P=0&h=180"
+            )
+        with col2:
+            create_movie_card(
+                "Your Name",
+                "Two strangers find themselves linked in a bizarre way. When a connection forms, will distance be the only thing to keep them apart?",
+                "https://m.media-amazon.com/images/M/MV5BNTQyMDQwYTUtMDdlMC00YTczLTk2NDktZDRjZDEyZjJmNGQzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg"
+            )
+
+    # ROMANCE
+    with st.expander("ROMANCE", expanded=False):
+        col1, col2 = st.columns(2)
+        with col1:
+            create_movie_card(
+                "The Notebook",
+                "A poor yet passionate young man falls in love with a rich young woman, giving her a sense of freedom, but they are soon separated because of their social differences.",
+                "https://image.tmdb.org/t/p/original/wbvboxr6xmdSbMEBKzXVWgAwJ1Q.jpg"
+            )
+        with col2:
+            create_movie_card(
+                "Pride and Prejudice",
+                "Sparks fly when spirited Elizabeth Bennet meets single, rich, and proud Mr. Darcy. But Mr. Darcy reluctantly finds himself falling in love with a woman beneath his class.",
+                "https://tse4.mm.bing.net/th?id=OIP.NGVYslLQv9LQr0iBtNpIYwHaJ4&pid=Api&P=0&h=180"
+            )
+
+    # THRILLER
+    with st.expander("THRILLER", expanded=False):
+        col1, col2 = st.columns(2)
+        with col1:
+            create_movie_card(
+                "Gone Girl",
+                "With his wife's disappearance having become the focus of an intense media circus, a man sees the spotlight turned on him when it's suspected that he may not be innocent.",
+                "https://upload.wikimedia.org/wikipedia/en/7/7e/Gone_Girl_%28Flynn_novel%29.jpg"
+            )
+        with col2:
+            create_movie_card(
+                "Se7en",
+                "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.",
+                "https://tse1.mm.bing.net/th?id=OIP.8oB6jMVpgxBpyXwv6iz-4wHaKf&pid=Api&P=0&h=180"
+            )
+
+    # COMEDY
+    with st.expander("COMEDY", expanded=False):
+        col1, col2 = st.columns(2)
+        with col1:
+            create_movie_card(
+                "The Grand Budapest Hotel",
+                "A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the hotel's glorious years under an exceptional concierge.",
+                "https://tse4.mm.bing.net/th?id=OIP.eqw9zTSb2p2SKwaElnbQNQHaLH&pid=Api&P=0&h=180"
+            )
+        with col2:
+            create_movie_card(
+                "Superbad",
+                "Two co-dependent high school seniors are forced to deal with separation anxiety after their plan to stage a booze-soaked party goes awry.",
+                "https://tse4.mm.bing.net/th?id=OIP.y1WWTnkVfWsrCyXUyoSL-AHaKj&pid=Api&P=0&h=180"
+            )
+
+    # DOCUMENTARY
+    with st.expander("DOCUMENTARY", expanded=False):
+        col1, col2 = st.columns(2)
+        with col1:
+            create_movie_card(
+                "Free Solo",
+                "Follow Alex Honnold as he becomes the first person to ever free solo climb Yosemite's 3,000ft high El Capitan Wall.",
+                "https://tse4.mm.bing.net/th?id=OIP.pZqKMB7LBkDXugRNvl22HgHaJ4&pid=Api&P=0&h=180"
+            )
+        with col2:
+            create_movie_card(
+                "March of the Penguins",
+                "A look at the annual journey of Emperor penguins as they march -- single file -- to their traditional breeding grounds.",
+                "https://tse4.mm.bing.net/th?id=OIP.QE94iI6Dn4s_hbHEe5rV9AHaLH&pid=Api&P=0&h=180"
+            )
   
 # Main function to control page navigation
 def load_data():
