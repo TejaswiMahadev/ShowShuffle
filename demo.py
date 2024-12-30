@@ -10,7 +10,7 @@ import requests
 from concurrent.futures import ThreadPoolExecutor
 
 def fetch_movie_poster(movie_name):
-    api_key = "api-key"
+    api_key = "TMDB_API_KEY"
     base_url = "https://api.themoviedb.org/3"
 
     search_url = f"{base_url}/search/movie"
